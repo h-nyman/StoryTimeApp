@@ -15,8 +15,8 @@ export default function RootLayout() {
   // Show splash screen until app is ready.
   if (!isReady) {
     return <View
-      style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'black' }}>
-      <Text>Loading...</Text>
+      style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white' }}>
+      <Text>Welcome to Movie Search</Text>
     </View>
   }
 
