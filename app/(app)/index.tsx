@@ -1,6 +1,6 @@
+import { searchMovies } from "@/services/omdb";
 import { useState } from "react";
 import { Button, FlatList, Image, StyleSheet, Text, TextInput, View } from "react-native";
-import { searchMovies } from "../../services/omdb";
 
 
 export default function Home() {
@@ -31,6 +31,7 @@ export default function Home() {
 
       <FlatList
         data={results}
+        style={styles.list}
         keyExtractor={(item) => item.imdbID}
         renderItem={({ item }) => (
           <View style={styles.movieItem}>
@@ -48,6 +49,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: "#fff"
+  },
+  list: {
+    marginTop: 10
   },
   input: {
     borderWidth: 1,
@@ -69,7 +73,7 @@ const styles = StyleSheet.create({
   pagetitle: {
     fontSize: 20,
     fontWeight: "600",
-    padding: 20
+    paddingBottom: 20
   },
   title: {
     fontSize: 16,
