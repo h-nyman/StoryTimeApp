@@ -1,46 +1,13 @@
-import { searchMovies } from "@/services/omdb";
 import { useState } from "react";
-import { Button, FlatList, Image, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, StyleSheet, TextInput, View } from "react-native";
 
 
 export default function Home() {
-  type Movie = {
-    imdbID: string;
-    Title: string;
-    Year: string;
-    Poster: string;
-  };
-  const [query, setQuery] = useState("");
-  const [results, setResults] = useState<Movie[]>([]);
-
-  const handleSearch = async () => {
-    const movies = await searchMovies(query);
-    setResults(movies);
-  };
-
+  const [storyPrompt, setStoryPrompt]= useState("")
   return (
     <View style={styles.container}>
-      <Text style={styles.pagetitle}>Search for a movie</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Movie name..."
-        value={query}
-        onChangeText={setQuery}
-      />
-      <Button title="Search" onPress={handleSearch} />
-
-      <FlatList
-        data={results}
-        style={styles.list}
-        keyExtractor={(item) => item.imdbID}
-        renderItem={({ item }) => (
-          <View style={styles.movieItem}>
-            <Image source={{ uri: item.Poster }} style={styles.poster} />
-            <Text style={styles.title}>{item.Title} ({item.Year})</Text>
-          </View>
-        )}
-      />
-    </View>
+      <TextInput style={styles.input} value={storyPrompt} onChangeText={setStoryPrompt}></TextInput>
+    <Button title="Generate"></Button></View>
   );
 }
 
