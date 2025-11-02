@@ -1,13 +1,36 @@
+import { ai } from "@/firebaseConfig";
+import { getImagenModel } from "firebase/ai";
 import { useState } from "react";
-import { Button, StyleSheet, TextInput, View } from "react-native";
+import { Button, Image, StyleSheet, TextInput, View } from "react-native";
 
 
 export default function Home() {
-  const [storyPrompt, setStoryPrompt]= useState("")
+  const [storyPrompt, setStoryPrompt] = useState("")
+  const [image, setImage] = useState("")
+  const generateImage = async () => {
+    const model = getImagenModel(ai, { model: "imagen-4.0-fast-generate-001" });
+    // To generate an image, call `generateImages` with the text prompt
+const response = await model.generateImages(storyPrompt)
+
+// If fewer images were generated than were requested,
+// then `filteredReason` will describe the reason they were filtered out
+if (response.filteredReason) {
+  console.log(response.filteredReason);
+}
+
+if (response.images.length === 0) {
+  throw new Error("No images in the response.")
+}
+
+const generatedImage = response.images[0];
+setImage(generatedImage.bytesBase64Encoded)
+  }
   return (
     <View style={styles.container}>
       <TextInput style={styles.input} value={storyPrompt} onChangeText={setStoryPrompt}></TextInput>
-    <Button title="Generate"></Button></View>
+      <Button title="Generate" onPress={generateImage}></Button>
+      <Image width={100} height={100} src={image}></Image>
+      </View>
   );
 }
 

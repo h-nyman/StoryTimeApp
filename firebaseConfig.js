@@ -1,4 +1,5 @@
 // Import the functions you need from the SDKs you need
+import { getAI, GoogleAIBackend } from "firebase/ai";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -19,3 +20,8 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
+
+// Initialize the Gemini Developer API backend service
+export const ai = getAI(app, { backend: new GoogleAIBackend() });
+
+
