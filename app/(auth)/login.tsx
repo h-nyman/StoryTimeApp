@@ -45,7 +45,7 @@ export default function Index() {
       />
       <Button title="Sign In" onPress={() => signInUser(email, password)} />
       <Text>New user?</Text>
-      <Link href="(auth)/register" asChild>
+      <Link href="./register" asChild>
         <Button title="Register here" />
       </Link>
     </View>

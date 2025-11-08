@@ -6,16 +6,12 @@ export default function Home() {
         <View style={styles.container}>
             <Text style={styles.title}>Welcome to Story Time!</Text>
             <View style={styles.buttonContainer}>
-                <Link href="(auth)/login" asChild>
-                    <View style={styles.button}>
-                        <Button title="Sign In" />
-                    </View>
+                <Link href="./login" asChild>
+                    <Button title="Sign In" />
                 </Link>
 
-                <Link href="(auth)/register" asChild>
-                    <View style={styles.button}>
-                        <Button title="Register" />
-                    </View>
+                <Link href="./register" asChild>
+                    <Button title="Register" />
                 </Link>
             </View>
         </View>

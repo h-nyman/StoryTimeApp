@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 
-function createUser(email, password) {
+function createUser(email:string, password:string) {
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // Signed up 
