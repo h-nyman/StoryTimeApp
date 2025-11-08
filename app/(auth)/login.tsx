@@ -2,7 +2,7 @@ import { auth } from "@/firebaseConfig";
 import { Link } from "expo-router";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 function signInUser(email: string, password: string) {
   signInWithEmailAndPassword(auth, email, password)
@@ -24,58 +24,128 @@ export default function Index() {
   const [password, onChangePassword] = useState('');
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sign in</Text>
+      <View style={styles.topSection}>
+        <Text style={styles.title}>Sign In</Text>
+      </View>
 
-      <Text style={styles.label}>E-mail:</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeEmail}
-        value={email}
-        keyboardType="email-address"
-        autoCapitalize="none"
-        placeholder="Enter your email"
-      />
-      <Text style={styles.label}>Password:</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangePassword}
-        value={password}
-        secureTextEntry={true}
-        placeholder="Enter your password"
-      />
-      <Button title="Sign In" onPress={() => signInUser(email, password)} />
-      <Text>New user?</Text>
-      <Link href="./register" asChild>
-        <Button title="Register here" />
-      </Link>
+      <View style={styles.bottomSection}>
+        <View style={styles.formContainer}>
+          <Text style={styles.label}>E-mail:</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={onChangeEmail}
+            value={email}
+            keyboardType="email-address"
+            autoCapitalize="none"
+            placeholder="Enter your email"
+            placeholderTextColor="#999"
+          />
+
+          <Text style={styles.label}>Password:</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={onChangePassword}
+            value={password}
+            secureTextEntry={true}
+            placeholder="Enter your password"
+            placeholderTextColor="#999"
+          />
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => signInUser(email, password)}
+          >
+            <Text style={styles.buttonText}>Sign In</Text>
+          </TouchableOpacity>
+
+          <Text style={styles.bottomText}>New user?</Text>
+          <Link href="./login" asChild>
+            <TouchableOpacity style={styles.linkButton}>
+              <Text style={styles.linkText}>Register here</Text>
+            </TouchableOpacity>
+          </Link>
+        </View>
+      </View>
     </View>
   );
 }
 
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    paddingHorizontal: 30,
-    backgroundColor: "#f5f5f5",
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: "bold",
-    marginBottom: 30,
-    textAlign: "center",
-  },
-  label: {
-    fontSize: 16,
-    marginBottom: 5,
-  },
-  input: {
-    height: 45,
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    marginBottom: 15,
-    backgroundColor: "#fff",
-  },
+    container: {
+        flex: 1,
+    },
+
+    topSection: {
+        flex: 1,
+        backgroundColor: "#3D5A80",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+
+    bottomSection: {
+        flex: 3,
+        backgroundColor: "#FFFFFF",
+        justifyContent: "center",
+        alignItems: "center",
+        paddingHorizontal: 30,
+    },
+
+    title: {
+        fontSize: 28,
+        fontWeight: "bold",
+        color: "#FFFFFF",
+        textAlign: "center",
+    },
+
+    formContainer: {
+        width: "85%",
+    },
+
+    label: {
+        fontSize: 16,
+        marginBottom: 5,
+        color: "#293241",
+    },
+
+    input: {
+        height: 45,
+        borderWidth: 1,
+        borderColor: "#ccc",
+        borderRadius: 10,
+        paddingHorizontal: 10,
+        marginBottom: 15,
+        backgroundColor: "#FFFFFF",
+    },
+
+    button: {
+        backgroundColor: "#3D5A80",
+        paddingVertical: 15,
+        borderRadius: 10,
+        alignItems: "center",
+        marginTop: 10,
+        marginBottom: 20,
+    },
+
+    buttonText: {
+        color: "#FFFFFF",
+        fontSize: 18,
+        fontWeight: "600",
+    },
+
+    bottomText: {
+        fontSize: 16,
+        color: "#293241",
+        textAlign: "center",
+    },
+
+    linkButton: {
+        marginTop: 10,
+        paddingVertical: 8,
+    },
+
+    linkText: {
+        color: "#3D5A80",
+        fontWeight: "bold",
+        textAlign: "center",
+    },
 });

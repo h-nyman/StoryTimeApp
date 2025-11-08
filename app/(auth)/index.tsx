@@ -1,18 +1,27 @@
 import { Link } from "expo-router";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Home() {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Welcome to Story Time!</Text>
-            <View style={styles.buttonContainer}>
-                <Link href="./login" asChild>
-                    <Button title="Sign In" />
-                </Link>
+            <View style={styles.topSection}>
+                <Text style={styles.title}>Welcome to Story Time!</Text>
+            </View>
 
-                <Link href="./register" asChild>
-                    <Button title="Register" />
-                </Link>
+            <View style={styles.bottomSection}>
+                <View style={styles.buttonContainer}>
+                    <Link href="./login" asChild>
+                        <TouchableOpacity style={styles.button}>
+                            <Text style={styles.buttonText}>Sign In</Text>
+                        </TouchableOpacity>
+                    </Link>
+
+                    <Link href="./register" asChild>
+                        <TouchableOpacity style={styles.button}>
+                            <Text style={styles.buttonText}>Register</Text>
+                        </TouchableOpacity>
+                    </Link>
+                </View>
             </View>
         </View>
     );
@@ -21,21 +30,49 @@ export default function Home() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
-        paddingHorizontal: 30,
-        backgroundColor: "#f5f5f5",
     },
+
+    topSection: {
+        flex: 1,
+        backgroundColor: "#3D5A80",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+
+    bottomSection: {
+        flex: 3,
+        backgroundColor: "#FFFFFF",
+        justifyContent: "center",
+        alignItems: "center",
+        paddingHorizontal: 30,
+    },
+
     title: {
         fontSize: 28,
         fontWeight: "bold",
-        color: "#333",
-        marginBottom: 10,
+        color: "#FFFFFF",
         textAlign: "center",
     },
+
     buttonContainer: {
-        marginTop: 20,
+        width: "80%",
+        alignItems: "center",
+        marginBottom: 30,
     },
+
     button: {
-        marginVertical: 8,
+        backgroundColor: "#3D5A80",
+        paddingVertical: 15,
+        paddingHorizontal: 20,
+        borderRadius: 10,
+        marginVertical: 10,
+        width: "100%",
+        alignItems: "center",
+    },
+
+    buttonText: {
+        color: "#FFFFFF",
+        fontSize: 18,
+        fontWeight: "600",
     },
 });
