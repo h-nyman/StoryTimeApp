@@ -1,5 +1,5 @@
 import { getAuth, signOut } from "firebase/auth";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Home() {
   const auth = getAuth()
@@ -9,9 +9,11 @@ export default function Home() {
         <Text style={styles.label}>User e-mail:</Text>
         <Text style={styles.email}>{auth.currentUser?.email}</Text>
       </View>
-      <View style={styles.signOutButton}>
-        <Button title="Sign out" onPress={() => signOut(auth)}></Button>
-      </View>
+      <TouchableOpacity
+        style={styles.signOutButton}
+        onPress={() => signOut(auth)}>
+        <Text style={styles.buttonText}>Sign Out</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -44,6 +46,17 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   signOutButton: {
+    backgroundColor: "#3D5A80",
+    paddingVertical: 15,
+    borderRadius: 10,
+    alignItems: "center",
     marginTop: 10,
-  }
+    marginBottom: 20,
+  },
+
+  buttonText: {
+    color: "#FFFFFF",
+    fontSize: 18,
+    fontWeight: "600",
+  },
 });

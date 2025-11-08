@@ -1,14 +1,14 @@
 import { ai } from "@/firebaseConfig";
 import { getImagenModel } from "firebase/ai";
 import { useState } from "react";
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-
+import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function Home() {
   const [storyPrompt, setStoryPrompt] = useState("")
+  const [imageLoading, setImageLoading] = useState(false)
   const [image, setImage] = useState("")
   const generateImage = async () => {
-    console.log()
+    setImageLoading(true)
     const model = getImagenModel(ai, { model: "imagen-4.0-fast-generate-001" });
     // To generate an image, call `generateImages` with the text prompt
     const response = await model.generateImages(storyPrompt)
@@ -25,26 +25,33 @@ export default function Home() {
 
     const generatedImage = response.images[0];
     setImage(`data:${generatedImage.mimeType};base64,${generatedImage.bytesBase64Encoded}`)
+    setImageLoading(false)
   }
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>What do you want to see?</Text>
       <TextInput style={styles.input} value={storyPrompt} onChangeText={setStoryPrompt} placeholder="Type your idea..."></TextInput>
       <TouchableOpacity style={styles.button} onPress={generateImage}>
         <Text style={styles.buttonText}>Generate</Text>
       </TouchableOpacity>
-      <Image style={styles.image} source={{ uri: image }} resizeMode="contain"></Image>
-    </View>
+      {imageLoading
+        ? <View style={styles.imagePlaceHolder}>
+          <ActivityIndicator size="large" color="#3D5A80" />
+        </View>
+        :
+        <Image style={styles.image} source={{ uri: image }} resizeMode="contain"></Image>
+      }
+
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#FFFFFF",
     paddingHorizontal: 30,
     justifyContent: "center",
-    alignItems: "center",
+    flex:1,
   },
 
   title: {
@@ -87,4 +94,9 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: "#FFFFFF",
   },
+  imagePlaceHolder: {
+    height: 300,
+    justifyContent: "center",
+    alignItems: "center",
+  }
 });
