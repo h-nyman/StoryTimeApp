@@ -1,5 +1,6 @@
+import { auth } from "@/firebaseConfig";
 import { Stack } from "expo-router";
-import { getAuth, onAuthStateChanged, User } from "firebase/auth";
+import { onAuthStateChanged, User } from "firebase/auth";
 import { useEffect, useState } from "react";
 
 export default function RootLayout() {
@@ -9,7 +10,6 @@ export default function RootLayout() {
 function RootNavigator() {
   const [user, setUser] = useState<null|User>(null);
   useEffect(() => {
-    const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, setUser);
 
     return unsubscribe;
@@ -23,7 +23,7 @@ function RootNavigator() {
     </Stack.Protected>
 
     <Stack.Protected guard={!user}>
-      <Stack.Screen name="(auth)/index" />
+      <Stack.Screen name="(auth)" />
     </Stack.Protected>
   </Stack>
 }

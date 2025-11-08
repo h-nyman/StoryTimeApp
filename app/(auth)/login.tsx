@@ -4,16 +4,18 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 
-function signInUser(email, password) {
+function signInUser(email: string, password: string) {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
       // ...
+      console.log("logged in user: ", user.email)
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
+      console.error(errorCode + " " + errorMessage)
     });
 }
 
