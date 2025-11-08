@@ -8,6 +8,7 @@ export default function Home() {
   const [storyPrompt, setStoryPrompt] = useState("")
   const [image, setImage] = useState("")
   const generateImage = async () => {
+    console.log()
     const model = getImagenModel(ai, { model: "imagen-4.0-fast-generate-001" });
     // To generate an image, call `generateImages` with the text prompt
 const response = await model.generateImages(storyPrompt)
@@ -23,13 +24,13 @@ if (response.images.length === 0) {
 }
 
 const generatedImage = response.images[0];
-setImage(generatedImage.bytesBase64Encoded)
+setImage(`data:${generatedImage.mimeType};base64,${generatedImage.bytesBase64Encoded}`)
   }
   return (
     <View style={styles.container}>
       <TextInput style={styles.input} value={storyPrompt} onChangeText={setStoryPrompt}></TextInput>
       <Button title="Generate" onPress={generateImage}></Button>
-      <Image width={100} height={100} src={image}></Image>
+      <Image style={{height: 300}} source={{ uri: image }} resizeMode="contain"></Image>
       </View>
   );
 }
@@ -38,7 +39,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+    gap: 10
   },
   list: {
     marginTop: 10
@@ -48,7 +50,6 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     padding: 10,
     borderRadius: 8,
-    marginBottom: 10
   },
   movieItem: {
     flexDirection: "row",

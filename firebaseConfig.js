@@ -23,5 +23,3 @@ export const auth = getAuth(app);
 
 // Initialize the Gemini Developer API backend service
 export const ai = getAI(app, { backend: new GoogleAIBackend() });
-
-
