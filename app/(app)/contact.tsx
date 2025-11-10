@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export default function Home() {
+export default function ContactScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.aboutText}>StoryTime is an app designed to bring imagination to life.

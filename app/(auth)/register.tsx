@@ -9,16 +9,16 @@ function createUser(email: string, password: string) {
         .then((userCredential) => {
             // Signed up 
             const user = userCredential.user;
-            // ...
+            console.log("logged in user: ", user.email)
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            // ..
+            console.error(errorCode + " " + errorMessage)
         });
 }
 
-export default function Index() {
+export default function RegisterScreen() {
     const [email, onChangeEmail] = useState('');
     const [password, onChangePassword] = useState('');
     return (

@@ -1,7 +1,7 @@
 import { getAuth, signOut } from "firebase/auth";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function Home() {
+export default function SettingScreen() {
   const auth = getAuth()
   return (
     <View style={styles.container}>

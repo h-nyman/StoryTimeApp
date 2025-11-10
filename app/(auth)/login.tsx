@@ -9,7 +9,6 @@ function signInUser(email: string, password: string) {
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
-      // ...
       console.log("logged in user: ", user.email)
     })
     .catch((error) => {
@@ -19,7 +18,7 @@ function signInUser(email: string, password: string) {
     });
 }
 
-export default function Index() {
+export default function LoginScreen() {
   const [email, onChangeEmail] = useState('');
   const [password, onChangePassword] = useState('');
   return (
@@ -58,7 +57,7 @@ export default function Index() {
           </TouchableOpacity>
 
           <Text style={styles.bottomText}>New user?</Text>
-          <Link href="./login" asChild>
+          <Link href="./register" asChild>
             <TouchableOpacity style={styles.linkButton}>
               <Text style={styles.linkText}>Register here</Text>
             </TouchableOpacity>

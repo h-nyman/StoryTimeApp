@@ -2,6 +2,12 @@
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app). It uses Firebase AI Logic to create images based on user prompts.
 
+## Features
+- Email/password authentication with Firebase
+- AI-powered image generation using Firebase’s Imagen model
+- Modern navigation with Expo Router
+- Works on Android, iOS, and Web (via Expo)
+
 ## Get started
 
 1. Install dependencies
