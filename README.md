@@ -1,6 +1,6 @@
-# Movie Search
+# Story Time
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app). It's demonstrating Firebase Auth and OMDB Movie Search.
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app). It uses Firebase AI Logic to create images based on user prompts.
 
 ## Get started
 
@@ -10,15 +10,7 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npm install
    ```
 
-2. Configure environment
-
-```bash
-cp .env.example .env
-```
-
-Add missing secrets in the .env file.
-
-3. Start the app
+2. Start the app
 
    ```bash
    npx expo start
